@@ -164,7 +164,7 @@ section div h4 {
     position       : absolute;
     padding        : 1% 0 1% 0;
     z-index        : 1;
-    text-decoration: none;
+    text-decoration: none;  
 }
 
 
@@ -188,7 +188,10 @@ section div h4 {
 .hide {
     display: none;
 }
-
+.show
+{
+    display: block;
+}
 .movie {
     animation     : none;
     display       : flex;

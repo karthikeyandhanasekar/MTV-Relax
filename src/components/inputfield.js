@@ -29,11 +29,11 @@ const Input = ({ type, name, placeholder, onchange }) => {
     }
     useEffect(() => {
         searchmovie(moviename)
-       function hide ()
-       {
-        document.querySelector(".suggestion").classList.toggle("hide");
-       }
-       hide()
+
+
+
+
+
 
     }, [moviename])
 
@@ -41,16 +41,16 @@ const Input = ({ type, name, placeholder, onchange }) => {
     return (
         <React.Fragment>
             <input type={type} name={name} placeholder={placeholder} onKeyUp={handletextfield} />
-            <div className="suggestion" style={{ height: (movielist.length * document.querySelector(".suggestion div")?.offsetHeight) }} >
+            <div className={`suggestion ${moviename !== '' ? `show` : `hide` }` } style={{ height: (movielist.length * document.querySelector(".suggestion div")?.offsetHeight) }} >
                 {moviename !== '' ?
                     movielist.map(ele => ele.backdrop_path ?
                         <div key={ele.id} onClick={() => naviagte(`../moviedetail/${ele.name ? ele.name : ele.title}/${ele.id}`)} >
                             <img src={`https://image.tmdb.org/t/p/w500${ele.backdrop_path}`} alt={ele.name ? ele.name : ele.title} />
                             <h2>{ele.name ? ele.name : ele.title}</h2></div>
-                            : null
+                        : null
 
-                        )
-                : document.querySelector(".suggestion")?.classList.toggle("hide")
+                    )
+                    : document.querySelector(".suggestion")?.classList.toggle("hide")
                 }
             </div>
 
