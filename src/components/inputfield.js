@@ -19,16 +19,16 @@ const Input = ({ type, name, placeholder, onchange }) => {
         getmoviename(event.target.value);
 
     }
-    const searchmovie = async () => {
+    const searchmovie = async (movie) => {
         try {
-            const api = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${apikey}&query=${moviename}`)
+            const api = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${apikey}&query=${movie}`)
             getmovielist(api.data.results);
         } catch (error) {
             console.log(error);
         }
     }
     useEffect(() => {
-        searchmovie()
+        searchmovie(moviename)
         document.querySelector(".suggestion").classList.toggle("hide");
 
     }, [moviename])
@@ -39,15 +39,14 @@ const Input = ({ type, name, placeholder, onchange }) => {
             <input type={type} name={name} placeholder={placeholder} onKeyUp={handletextfield} />
             <div className="suggestion" style={{ height: (movielist.length * document.querySelector(".suggestion div")?.offsetHeight) }} >
                 {moviename !== '' ?
-                    movielist.map(ele =>
-                        {
-                            if(ele.backdrop_path)
-                        return <div key={ele.id} onClick={() => naviagte(`../moviedetail/${ele.name ? ele.name : ele.title}/${ele.id}`)} >
+                    movielist.map(ele => ele.backdrop_path ?
+                        <div key={ele.id} onClick={() => naviagte(`../moviedetail/${ele.name ? ele.name : ele.title}/${ele.id}`)} >
                             <img src={`https://image.tmdb.org/t/p/w500${ele.backdrop_path}`} alt={ele.name ? ele.name : ele.title} />
                             <h2>{ele.name ? ele.name : ele.title}</h2></div>
+                            : null
 
-                        })
-                    : document.querySelector(".suggestion")?.classList.toggle("hide")
+                        )
+                : document.querySelector(".suggestion")?.classList.toggle("hide")
                 }
             </div>
 

@@ -18,18 +18,18 @@ const Movie = () => {
 
 
 
-    const findmovie = async () => {
+    const findmovie = async (id) => {
         try {
-            const api = await axios.get(`https://api.themoviedb.org/3/movie/${params.id}?api_key=${apikey}`)
+            const api = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
             getmovie(api.data)
         } catch (error) {
             console.log(error);
         }
     }
 
-    const findtv = async () => {
+    const findtv = async (id) => {
         try {
-            const api = await axios.get(`https://api.themoviedb.org/3/tv/${params.id}?api_key=${apikey}`)
+            const api = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${apikey}`)
             gettv(api.data)
         } catch (error) {
             console.log(error);
@@ -37,8 +37,8 @@ const Movie = () => {
     }
 
     useEffect(() => {
-        findmovie()
-        findtv()
+        findmovie(params.id)
+        findtv(params.id)
     }, [params.id])
 
 

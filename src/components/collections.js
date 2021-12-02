@@ -8,17 +8,17 @@ const apikey = `2debe0f00b477f3d87075013e384ea67`
 const Collection = ({ collectionid }) => {
     const [collection, getcollection] = useState()
 
-    const collections = async () => {
+    const collections = async (id) => {
         try {
-            const api = await axios.get(`https://api.themoviedb.org/3/collection/${collectionid}?api_key=${apikey}`)
+            const api = await axios.get(`https://api.themoviedb.org/3/collection/${id}?api_key=${apikey}`)
             getcollection(api.data)
         } catch (error) {
             console.log(error);
         }
     }
     useEffect(() => {
-        collections()
-    }, [])
+        collections(collectionid)
+    }, [collectionid])
 
     const ui = collection?.parts?.map(ele => <Content id={ele.id} imgpath={`https://image.tmdb.org/t/p/w200${ele.poster_path}`} title={ele.title ? ele.title : ele.name}
         count={ele.vote_count} average={ele.vote_average} />
