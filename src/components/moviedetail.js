@@ -13,8 +13,8 @@ const apikey = `2debe0f00b477f3d87075013e384ea67`
 const Movie = () => {
     const params = useParams()
     const name = params.name
-    const [movie, getmovie] = useState()
-    const [tv, gettv] = useState()
+    const [movie, getmovie] = useState(undefined)
+    const [tv, gettv] = useState(undefined)
 
 
 
