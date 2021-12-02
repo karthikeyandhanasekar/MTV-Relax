@@ -29,7 +29,11 @@ const Input = ({ type, name, placeholder, onchange }) => {
     }
     useEffect(() => {
         searchmovie(moviename)
+       function hide ()
+       {
         document.querySelector(".suggestion").classList.toggle("hide");
+       }
+       hide()
 
     }, [moviename])
 
