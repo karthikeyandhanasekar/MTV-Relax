@@ -15,7 +15,7 @@ const Header = () => {
                 <h1>{applntitle}</h1>
             </div>
             <div>
-                {/* <Input type="search" placeholder="Game of thrones" /> */}
+                <Input type="search" placeholder="Game of thrones" /> 
             </div>
 
         </header>

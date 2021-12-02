@@ -27,15 +27,9 @@ const Input = ({ type, name, placeholder, onchange }) => {
             console.log(error);
         }
     }
-    useEffect(() => {
+    useEffect(() => 
         searchmovie(moviename)
-
-
-
-
-
-
-    }, [moviename])
+    , [moviename])
 
 
     return (
