@@ -25,7 +25,7 @@ const Input = ({ type, name, placeholder, onchange }) => {
     }
 
     React.useEffect(() => {
-        if (moviename || moviename !== '')
+        if (moviename && moviename !== '')
             searchmovie(moviename)
     }, [moviename])
 
@@ -34,7 +34,7 @@ const Input = ({ type, name, placeholder, onchange }) => {
     return (
         <React.Fragment>
             <input type={type} name={name} placeholder={placeholder} onKeyUp={handletextfield} />
-            <div className={`suggestion ${moviename !== '' ? `show` : `hide`}`}   >
+            <div className={`suggestion ${moviename && moviename !== '' ? `show` : `hide`}`}   >
                 {moviename !== '' ?
                     movielist.map(ele => ele.backdrop_path ?
                         <div key={ele.id} onClick={() => naviagte(`../moviedetail/${ele.name ? ele.name : ele.title}/${ele.id}`)} >
