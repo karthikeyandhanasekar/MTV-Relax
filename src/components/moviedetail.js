@@ -1,8 +1,7 @@
 
 import axios from "axios"
-import { Fragment } from "react"
+import React, { Fragment } from "react"
 import { useParams } from "react-router"
-import { useEffect, useState } from "react/cjs/react.development"
 import Similar from "./similar"
 import Aside from "./aside"
 import Collection from "./collections"
@@ -13,8 +12,8 @@ const apikey = `2debe0f00b477f3d87075013e384ea67`
 const Movie = () => {
     const params = useParams()
     const name = params.name
-    const [movie, getmovie] = useState(undefined)
-    const [tv, gettv] = useState(undefined)
+    const [movie, getmovie] = React.useState(undefined)
+    const [tv, gettv] = React.useState(undefined)
 
 
 
@@ -36,7 +35,7 @@ const Movie = () => {
         }
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         findmovie(params.id)
         findtv(params.id)
     }, [params.id])
@@ -56,7 +55,6 @@ const Movie = () => {
     const seasons = details?.seasons ? details?.seasons?.length : null
     const status = details?.status
 
-    console.log(iscollection);
     return (
         <Fragment>
             <Header />
@@ -73,10 +71,10 @@ const Movie = () => {
 
                 </div>
 
-                {iscollection ? <div className="collection"> <Collection  collectionid={iscollection} />    </div>
+                {iscollection ? <div className="collection"> <Collection collectionid={iscollection} />    </div>
                     : null}
-                    
-                    {<Similar type={type} id={params.id} />}
+
+                {<Similar type={type} id={params.id} />}
 
             </section>
         </Fragment>

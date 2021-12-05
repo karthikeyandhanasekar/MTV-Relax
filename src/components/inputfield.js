@@ -15,18 +15,18 @@ const Input = ({ type, name, placeholder, onchange }) => {
         getmoviename(event.target.value);
 
     }
+    const searchmovie = async (movie) => {
+        try {
+            const api = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${apikey}&query=${movie}`)
+            getmovielist(api.data.results);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     React.useEffect(() => {
-
-        const searchmovie = async (movie) => {
-            try {
-                const api = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${apikey}&query=${movie}`)
-                getmovielist(api.data.results);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        searchmovie(moviename)
+        if (moviename || moviename !== '')
+            searchmovie(moviename)
     }, [moviename])
 
     return (
