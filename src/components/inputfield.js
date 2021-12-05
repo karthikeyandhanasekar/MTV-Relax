@@ -29,6 +29,8 @@ const Input = ({ type, name, placeholder, onchange }) => {
             searchmovie(moviename)
     }, [moviename])
 
+
+    console.log("movie name " + moviename );
     return (
         <React.Fragment>
             <input type={type} name={name} placeholder={placeholder} onKeyUp={handletextfield} />
