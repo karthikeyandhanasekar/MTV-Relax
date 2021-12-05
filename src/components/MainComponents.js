@@ -1,4 +1,4 @@
-import { Routes, Route, useParams } from "react-router"
+import { Routes, Route, useLocation } from "react-router"
 import Home from "./Home"
 import Popular from "./popular"
 import axios from "axios"
@@ -25,9 +25,9 @@ const MainComponents = () => {
     const [tvdata, gettv] = useState([])
     const [populartv, getpopulartv] = useState([])
     const [topratedtv, gettopratedtv] = useState([])
-    const params = useParams()
-    const type = params.type
-
+    const location = useLocation()
+    const search = new URLSearchParams(location.search).get("type")
+    const type = search ? search : "movie"
 
     //help to toggle b/w tv&movies
 
@@ -140,16 +140,15 @@ const MainComponents = () => {
         apitopratedtv()
 
     }, [])
-
     return (
         <Routes >
             <Route exact path="/" element={<Home data={type === 'movie' ? moviedata : tvdata} />} />
 
 
-            <Route path="/home/:type" element={<Home data={type === 'movie' ? moviedata : tvdata} />} />
-            <Route path="/popular/:type" element={<Popular data={type === 'movie' ? popularmovie : populartv} />} />
-            <Route path="/upcomming/:type" element={<Upcomming data={upcommingmovie} />} />
-            <Route path="/toprated/:type" element={<TopRated data={type === 'movie' ? topratedmovie : topratedtv} />} />
+            <Route path="/home" element={<Home data={type === 'movie' ? moviedata : tvdata} />} />
+            <Route path="/popular" element={<Popular data={type === 'movie' ? popularmovie : populartv} />} />
+            <Route path="/upcomming" element={<Upcomming data={upcommingmovie} />} />
+            <Route path="/toprated" element={<TopRated data={type === 'movie' ? topratedmovie : topratedtv} />} />
             <Route path="/moviedetail/:name/:id" element={<Movie />} />
 
         </Routes>

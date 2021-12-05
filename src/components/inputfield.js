@@ -25,15 +25,17 @@ const Input = ({ type, name, placeholder, onchange }) => {
             console.log(error);
         }
     }
-    useEffect(() =>
-        searchmovie(moviename)
+    useEffect(() => {
+        if (moviename || moviename !== '') {
+            searchmovie(moviename)
+        }
+    }
         , [moviename])
 
-    console.log(moviename !== '' ? `show` : `hide`);
     return (
         <React.Fragment>
             <input type={type} name={name} placeholder={placeholder} onKeyUp={handletextfield} />
-            <div className={`suggestion ${moviename !== '' ? `show` : `hide`}`} style={{ height: (movielist.length * document.querySelector(".suggestion div")?.offsetHeight) }} >
+            <div className={`suggestion ${moviename !== '' ? `show` : `hide`}`}   >
                 {moviename !== '' ?
                     movielist.map(ele => ele.backdrop_path ?
                         <div key={ele.id} onClick={() => naviagte(`../moviedetail/${ele.name ? ele.name : ele.title}/${ele.id}`)} >
