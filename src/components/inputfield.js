@@ -17,25 +17,24 @@ const Input = ({ type, name, placeholder, onchange }) => {
         getmoviename(event.target.value);
 
     }
-    
-    useEffect(() =>{
-       
-            const searchmovie = async (movie) => {
-                try {
-                    const api = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${apikey}&query=${movie}`)
-                    getmovielist(api.data.results);
-                } catch (error) {
-                    console.log(error);
-                }
+
+    useEffect(() => {
+
+        const searchmovie = async (movie) => {
+            try {
+                const api = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${apikey}&query=${movie}`)
+                getmovielist(api.data.results);
+            } catch (error) {
+                console.log(error);
             }
+        }
         searchmovie(moviename)
-    }
-        , [moviename])
+    }, [moviename])
 
     return (
         <React.Fragment>
             <input type={type} name={name} placeholder={placeholder} onKeyUp={handletextfield} />
-            <div className={`suggestion ${moviename !== '' ? `show` : `hide`}`   }   >
+            <div className={`suggestion ${moviename !== '' ? `show` : `hide`}`}   >
                 {moviename !== '' ?
                     movielist.map(ele => ele.backdrop_path ?
                         <div key={ele.id} onClick={() => naviagte(`../moviedetail/${ele.name ? ele.name : ele.title}/${ele.id}`)} >
