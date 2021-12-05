@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react/cjs/react.development"
 import axios from "axios"
 import Content from "./content"
 import React from "react"
@@ -6,7 +5,7 @@ import React from "react"
 const apikey = `2debe0f00b477f3d87075013e384ea67`
 
 const Collection = ({ collectionid }) => {
-    const [collection, getcollection] = useState()
+    const [collection, getcollection] = React.useState()
 
     const collections = async (id) => {
         try {
@@ -16,7 +15,7 @@ const Collection = ({ collectionid }) => {
             console.log(error);
         }
     }
-    useEffect(() => {
+    React.useEffect(() => {
         collections(collectionid)
     }, [collectionid])
 
