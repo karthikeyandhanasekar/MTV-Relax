@@ -130,7 +130,6 @@ const MainComponents = () => {
 
     useEffect(() => {
 
-
         apimovieprocess()
         apipopularmovie()
         apiupcommingmovie()

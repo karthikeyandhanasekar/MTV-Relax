@@ -1,6 +1,4 @@
 import React from "react"
-import { useState } from "react"
-import { useEffect } from "react/cjs/react.development"
 import axios from "axios"
 import { useNavigate } from "react-router"
 
@@ -9,8 +7,8 @@ const apikey = `2debe0f00b477f3d87075013e384ea67`
 
 
 const Input = ({ type, name, placeholder, onchange }) => {
-    const [moviename, getmoviename] = useState('')
-    const [movielist, getmovielist] = useState([])
+    const [moviename, getmoviename] = React.useState('')
+    const [movielist, getmovielist] = React.useState([])
     const naviagte = useNavigate()
 
     const handletextfield = (event) => {
@@ -18,7 +16,7 @@ const Input = ({ type, name, placeholder, onchange }) => {
 
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
 
         const searchmovie = async (movie) => {
             try {
