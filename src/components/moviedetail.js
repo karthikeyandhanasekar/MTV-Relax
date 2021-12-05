@@ -73,7 +73,7 @@ const Movie = () => {
 
                 </div>
 
-                {iscollection ? <div className="collection"> <Collection collectionid={iscollection} />    </div>
+                {iscollection ? <div className="collection"> <Collection  collectionid={iscollection} />    </div>
                     : null}
                     
                     {<Similar type={type} id={params.id} />}

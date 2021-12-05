@@ -22,7 +22,7 @@ const Similar = ({ id, type }) => {
     }, [type,id])
 
     console.log(similar);
-    const ui = similar?.map(ele => <Content id={ele.id} imgpath={`https://image.tmdb.org/t/p/w200${ele.poster_path}`} title={ele.title ? ele.title : ele.name}
+    const ui = similar?.map(ele => <Content key={ele.id} id={ele.id} imgpath={`https://image.tmdb.org/t/p/w200${ele.poster_path}`} title={ele.title ? ele.title : ele.name}
     />
     )
     if (ui) {   
