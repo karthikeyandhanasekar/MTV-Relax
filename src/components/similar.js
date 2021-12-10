@@ -7,7 +7,7 @@ const apikey = `2debe0f00b477f3d87075013e384ea67`
 const Similar = ({ id, type }) => {
     const [similar, getsimilar] = React.useState()
 
-    const collections = async (type,id) => {
+    const collections = async (type, id) => {
         try {
             const api = await axios.get(`
             https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${apikey}`)
@@ -17,17 +17,16 @@ const Similar = ({ id, type }) => {
         }
     }
     React.useEffect(() => {
-        collections(type,id)
-    }, [type,id])
+        collections(type, id)
+    }, [type, id])
 
-    console.log(similar);
     const ui = similar?.map(ele => <Content key={ele.id} id={ele.id} imgpath={`https://image.tmdb.org/t/p/w200${ele.poster_path}`} title={ele.title ? ele.title : ele.name}
     />
     )
-    if (ui) {   
+    if (ui) {
         return (
             <div className="collection similar">
-            {ui}
+                {ui}
             </div>
         )
     }

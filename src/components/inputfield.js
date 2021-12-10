@@ -15,6 +15,11 @@ const Input = ({ type, name, placeholder, onchange }) => {
         getmoviename(event.target.value);
 
     }
+    const suggestiononclick = ({ id, name, title }) => {
+        document.querySelector(".suggestion").classList.toggle("show")
+        naviagte(`../moviedetail/${name ? name : title}/${id}`)
+    }
+
     const searchmovie = async (movie) => {
         try {
             const api = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${apikey}&query=${movie}`)
@@ -25,19 +30,24 @@ const Input = ({ type, name, placeholder, onchange }) => {
     }
 
     React.useEffect(() => {
-        if (moviename && moviename !== '')
+        if (moviename.length !== 0)
             searchmovie(moviename)
     }, [moviename])
 
 
-    console.log("movie name " + moviename );
     return (
         <React.Fragment>
             <input type={type} name={name} placeholder={placeholder} onKeyUp={handletextfield} />
-            <div className={`suggestion ${moviename && moviename !== '' ? `show` : `hide`}`}   >
+            <div className={`suggestion ${moviename.length !== 0 ? `show` : `hide`}`}   >
                 {moviename !== '' ?
                     movielist.map(ele => ele.backdrop_path ?
-                        <div key={ele.id} onClick={() => naviagte(`../moviedetail/${ele.name ? ele.name : ele.title}/${ele.id}`)} >
+                        <div key={ele.id} onClick={() => suggestiononclick(
+                            {
+                                id: ele.id,
+                                name: ele.name,
+                                title: ele.title
+                            }
+                        )} >
                             <img src={`https://image.tmdb.org/t/p/w500${ele.backdrop_path}`} alt={ele.name ? ele.name : ele.title} />
                             <h2>{ele.name ? ele.name : ele.title}</h2></div>
                         : null
@@ -49,4 +59,6 @@ const Input = ({ type, name, placeholder, onchange }) => {
         </React.Fragment>
     )
 }
+
+
 export default Input
